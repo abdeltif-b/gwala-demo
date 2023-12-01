@@ -1,6 +1,6 @@
-import { FavoriteQuestions } from "@/app/components/FavoriteQuestions";
-import { QuestionsByDistance } from "@/app/components/QuestionsByDistance";
-import { QuestionsOnMap } from "@/app/components/QuestionsOnMap";
+import { FavoriteQuestions } from "@/components/FavoriteQuestions";
+import { QuestionsByDistance } from "@/components/QuestionsByDistance";
+import { QuestionsOnMap } from "@/components/QuestionsOnMap";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
