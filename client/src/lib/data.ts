@@ -28,6 +28,28 @@ export const getQuestionsByDistance = () => {
   ];
   return data;
 };
+export const getFavoriteQuestions = () => {
+  const data = [
+    {
+      id: 1,
+      title: "question 1?",
+    },
+    {
+      id: 2,
+      title: "question 2?",
+    },
+    {
+      id: 3,
+      title: "question 3?",
+    },
+    {
+      id: 4,
+      title: "question 4?",
+    },
+  ];
+  return data;
+};
+
 export const getQuestionDetailsById = (questionId: number, userId: number) => {
   const data = {
     id: 1,
