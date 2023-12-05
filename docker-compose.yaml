@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - db:/data/db
+    env_file:
+      - .db.env
+    networks:
+      - net
+
+  express:
+    container_name: express
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    env_file:
+      - ./server/.env
+    networks:
+      - net
+
+  nextjs:
+    container_name: nextjs
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - express
+    env_file:
+      - ./client/.env
+    networks:
+      - net
+
+volumes:
+  db:
+
+networks:
+  net:
+    driver: bridge
