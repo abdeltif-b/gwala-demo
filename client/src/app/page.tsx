@@ -1,6 +1,6 @@
 import { FavoriteQuestions } from "@/components/FavoriteQuestions";
 import { QuestionsByDistance } from "@/components/QuestionsByDistance";
-import { QuestionsOnMap } from "@/components/QuestionsOnMap";
+import { QuestionsLocation } from "@/components/QuestionsLocation";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
@@ -13,6 +13,7 @@ export default async function Page() {
       <QuestionsByDistance />
       <QuestionsOnMap />
       <FavoriteQuestions />
+        <QuestionsLocation />
     </div>
   );
 }
