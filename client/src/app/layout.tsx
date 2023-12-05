@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import ThemeSwitch from "@/components/theme/theme-switch";
 import MenuBar from "@/components/base/MenuBar";
+import { CustomToaster } from "@/components/base/Toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <MenuBar />
           {children}
           <ThemeSwitch />
+          <CustomToaster />
         </ThemeProvider>
       </body>
     </html>
