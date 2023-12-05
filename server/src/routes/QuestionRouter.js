@@ -3,6 +3,7 @@ import QuestionModel from "../models/question.js";
 import UserModelModel from "../models/user.js";
 import mongoose from "mongoose";
 import UserModel from "../models/user.js";
+import { computeDistance } from "../utils/computeDistance.js";
 
 const router = express.Router();
 
@@ -24,17 +25,22 @@ router.post("/questions", async (request, response) => {
   }
 });
 
-router.get("/questions", async (request, response) => {
+router.get("/questions/:userId", async (request, response) => {
   try {
-    const data = await QuestionModel.find().populate({ path: "location", select: "name" }).select("title location");
-    response.send(data);
+    const user = await UserModel.findById(request.params.userId).populate("location");
+    const data = await QuestionModel.find()
+      .populate({ path: "location", select: ["name", "coordinates"] })
+      .select("title location");
+
+    const sortedData = computeDistance(data, user.location.coordinates.latitude, user.location.coordinates.longitude);
+    response.send(sortedData);
   } catch (error) {
     console.error("Error fetching data:", error);
     response.status(500).send({ error });
   }
 });
 
-router.get("/questions/:id", async (request, response) => {
+router.get("/question/:id", async (request, response) => {
   try {
     const data = await QuestionModel.findOne({ _id: request.params.id })
       .populate({
@@ -123,7 +129,6 @@ router.post("/favorites", async (request, response) => {
     if (!updatedUser) {
       return response.status(404).json({ error: "User not found" });
     }
-    console.log(updatedUser);
     response.status(200).json(updatedUser);
   } catch (error) {
     console.error(error);
