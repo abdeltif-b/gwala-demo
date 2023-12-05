@@ -40,13 +40,13 @@ export async function QuestionAnswers({ questionId }: { questionId: string }) {
 
         <div className="grid gap-4 py-4">{questionDetails.content}</div>
 
-        <LikeQuestionForm questionId={questionId} userId={user._id} />
+        <LikeQuestionForm questionId={questionId} userId={user!._id} />
 
         <ScrollArea className="rounded-md border p-2 h-[220px]">
           <div className="font-bold text-md">Answers</div>
           <div>
             {questionDetails.answers.length
-              ? questionDetails.answers.reverse().map((item) => (
+              ? questionDetails.answers.reverse().map((item: any) => (
                   <div key={item.id} className="gap-1">
                     <Separator className="my-2" />
                     <div className="text-sm">{item.content}</div>
@@ -58,7 +58,7 @@ export async function QuestionAnswers({ questionId }: { questionId: string }) {
               : "Be the first to answer this question!"}
           </div>
         </ScrollArea>
-        <AddAnswerForm questionId={questionId} userId={user._id} />
+        <AddAnswerForm questionId={questionId} userId={user!._id} />
       </AlertDialogContent>
     </AlertDialog>
   );

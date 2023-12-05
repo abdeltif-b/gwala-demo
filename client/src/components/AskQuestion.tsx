@@ -26,7 +26,7 @@ export const AskQuestion = async () => {
         <AlertDialogHeader>
           <AlertDialogTitle>Ask a new question</AlertDialogTitle>
         </AlertDialogHeader>
-        <AskQuestionForm userId={user._id} locations={locations} />
+        <AskQuestionForm userId={user!._id} locations={locations} />
       </AlertDialogContent>
     </AlertDialog>
   );

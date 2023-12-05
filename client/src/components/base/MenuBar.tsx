@@ -27,7 +27,7 @@ const MenuItems: FC<MenuListProps> = ({ isVertical }) => {
     <NavigationMenu>
       <NavigationMenuList className={cn("flex items-start space-x-0", { "flex-col": isVertical })}>
         <NavigationMenuItem className="flex items-start">
-          <Link legacyBehavior passHref href={"item.hash"}>
+          <Link legacyBehavior passHref href={"#"}>
             <NavigationMenuLink className={buttonVariants({ variant: "outline" })}>Sign out</NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

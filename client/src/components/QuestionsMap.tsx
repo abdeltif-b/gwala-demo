@@ -1,8 +1,8 @@
 "use client";
 
-import { Map, Source, Layer } from "react-map-gl";
+import { Map, Source, Layer, LayerProps } from "react-map-gl";
 
-const clusterLayer = {
+const clusterLayer: LayerProps = {
   id: "clusters",
   type: "circle",
   source: "locations",
@@ -13,7 +13,7 @@ const clusterLayer = {
   },
 };
 
-const clusterCountLayer = {
+const clusterCountLayer: LayerProps = {
   id: "cluster-count",
   type: "symbol",
   source: "locations",
@@ -25,7 +25,7 @@ const clusterCountLayer = {
   },
 };
 
-const unclusteredPointLayer = {
+const unclusteredPointLayer: LayerProps = {
   id: "unclustered-point",
   type: "circle",
   source: "locations",
@@ -54,7 +54,10 @@ export const QuestionsMap = ({ locations }: any) => {
       <Source
         id="locations"
         type="geojson"
-        data={{ features: locations }}
+        data={{
+          type: "FeatureCollection",
+          features: locations,
+        }}
         cluster={true}
         clusterMaxZoom={14}
         clusterRadius={50}

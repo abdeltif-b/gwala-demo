@@ -8,7 +8,7 @@ import { getQuestionsByDistance, getUserInfo } from "@/lib/data";
 
 export const QuestionsByDistance = async () => {
   const user = await getUserInfo();
-  const questions = await getQuestionsByDistance(user._id);
+  const questions = await getQuestionsByDistance(user!._id);
 
   return (
     <div>
@@ -16,14 +16,14 @@ export const QuestionsByDistance = async () => {
         <CardHeader>
           <CardTitle>Questions sorted by distance</CardTitle>
           <CardDescription>
-            Your current location is <b>{user.location.name}</b>
+            Your current location is <b>{user!.location.name}</b>
           </CardDescription>
         </CardHeader>
         <CardContent>
           <ScrollArea className="rounded-md border p-2 h-[220px]">
             <div>
               {questions.length
-                ? questions.map((item) => (
+                ? questions.map((item: any) => (
                     <div key={item._id}>
                       <div className="text-sm flex justify-between">
                         <div>

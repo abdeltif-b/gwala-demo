@@ -52,7 +52,7 @@ export default function AskQuestionForm({ userId, locations }: { userId: string;
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Locations</SelectLabel>
-                {locations.map((item) => (
+                {locations.map((item: any) => (
                   <SelectItem key={item._id} value={item._id}>
                     {item.name}
                   </SelectItem>

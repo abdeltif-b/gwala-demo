@@ -37,7 +37,7 @@ export default function SignupPage() {
             </p>
 
             <p className="mt-2 text-xs text-center text-gray-700">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/reset" className="underline text-primary">
                 Sign up
               </Link>

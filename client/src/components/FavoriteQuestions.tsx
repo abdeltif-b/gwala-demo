@@ -8,7 +8,7 @@ import { TrashIcon } from "@radix-ui/react-icons";
 
 export const FavoriteQuestions = async () => {
   const user = await getUserInfo();
-  const { likedQuestions } = await getFavoriteQuestions(user._id);
+  const { likedQuestions } = await getFavoriteQuestions(user!._id);
 
   return (
     <div>
@@ -20,13 +20,13 @@ export const FavoriteQuestions = async () => {
           <ScrollArea className="rounded-md border p-2 h-[220px]">
             <div>
               {likedQuestions.length
-                ? likedQuestions.map((item) => (
+                ? likedQuestions.map((item: any) => (
                     <div key={item._id}>
                       <div className="text-sm flex justify-between">
                         <div>
                           <div>{item.title}</div>
                         </div>
-                        <form action={unlikeQuestion.bind(null, user._id).bind(null, item._id)}>
+                        <form action={unlikeQuestion.bind(null, user!._id).bind(null, item._id)}>
                           <Button type="submit" variant="destructive" size="icon" title="Remove from favorite list">
                             <TrashIcon className="h-4 w-4" />
                           </Button>
