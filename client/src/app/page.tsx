@@ -9,11 +9,14 @@ export default async function Page() {
   if (!session) redirect("auth/signin");
 
   return (
-    <div className="flex flex-col items-center p-4 gap-4">
-      <QuestionsByDistance />
-      <QuestionsOnMap />
-      <FavoriteQuestions />
+    <div className="grid grid-cols-1 md:grid-cols-2 p-4 gap-4">
+      <div className="col-span-1 space-y-4">
+        <QuestionsByDistance />
+        <FavoriteQuestions />
+      </div>
+      <div className="md:col-span-1">
         <QuestionsLocation />
+      </div>
     </div>
   );
 }
