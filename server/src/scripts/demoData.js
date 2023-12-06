@@ -18,7 +18,6 @@ try {
   process.exit(1);
 }
 
-// remove existing data
 const removeAllData = async () => {
   await UserModel.deleteMany({});
   await LocationModel.deleteMany({});
@@ -43,8 +42,11 @@ function generateQuestions(locations, userId) {
 }
 
 // insert new data
-async function insertDemoData() {
+export async function insertDemoData() {
   try {
+    // delete existing data
+    await removeAllData();
+
     // insert locations
     const locations = [
       {
@@ -90,5 +92,4 @@ async function insertDemoData() {
   }
 }
 
-await removeAllData();
 insertDemoData();
