@@ -1,7 +1,7 @@
 version: "3.8"
 services:
-  mongodb:
-    container_name: mongodb
+  db:
+    container_name: db
     image: mongo:6.0
     ports:
       - "27017:27017"
@@ -12,33 +12,37 @@ services:
     networks:
       - net
 
-  express:
-    container_name: express
+  server:
+    container_name: server
+    restart: unless-stopped
     build:
       context: ./server
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
     depends_on:
-      - mongodb
+      - db
     env_file:
       - ./server/.env
     networks:
       - net
 
-  nextjs:
-    container_name: nextjs
+  client:
     build:
       context: ./client
       dockerfile: Dockerfile
+    container_name: client
     ports:
       - "3000:3000"
     depends_on:
-      - express
+      - server
     env_file:
       - ./client/.env
     networks:
       - net
+    volumes:
+      - .:/app
+      - /app/node_modules
 
 volumes:
   db:
